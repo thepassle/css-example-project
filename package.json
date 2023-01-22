@@ -1,0 +1,22 @@
+{
+  "name": "example-project",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c rollup.config.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@web/rollup-plugin-html": "^1.11.0",
+    "@web/rollup-plugin-polyfills-loader": "^1.3.1",
+    "rollup": "^3.10.1",
+    "rollup-plugin-native-css-modules": "^1.0.2"
+  },
+  "dependencies": {
+    "lit": "^2.6.1"
+  }
+}

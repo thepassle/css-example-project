@@ -1,0 +1,48 @@
+<html><head>
+<link rel="modulepreload-shim" href="./my-element.js" />
+<link rel="modulepreload-shim" href="styles-78a368d53d94321d.css" as="style" />
+</head><body>
+    <script>
+    </script>
+    <my-element></my-element>
+    
+  
+<script>(function () {
+  function loadScript(src, type, attributes) {
+    return new Promise(function (resolve) {
+      var script = document.createElement('script');
+      function onLoaded() {
+        if (script.parentElement) {
+          script.parentElement.removeChild(script);
+        }
+        resolve();
+      }
+      script.src = src;
+      script.onload = onLoaded;
+      if (attributes) {
+        attributes.forEach(function (att) {
+          script.setAttribute(att.name, att.value);
+        });
+      }
+      script.onerror = function () {
+        console.error('[polyfills-loader] failed to load: ' + src + ' check the network tab for HTTP status.');
+        onLoaded();
+      };
+      if (type) script.type = type;
+      document.head.appendChild(script);
+    });
+  }
+  var polyfills = [];
+  polyfills.push(loadScript('./polyfills/es-module-shims.f92724091c9bc8c2ef41b9c986a19528.js'));
+  if (!("adoptedStyleSheets" in document)) {
+    polyfills.push(loadScript('./polyfills/constructible-style-sheets-polyfill.f4fd94bb8fee3ab1a6f5d7e4ef26ae01.js'));
+  }
+  function loadFiles() {
+    loadScript('./my-element.js', 'module-shim', []);
+  }
+  if (polyfills.length) {
+    Promise.all(polyfills).then(loadFiles);
+  } else {
+    loadFiles();
+  }
+})();</script></body></html>
